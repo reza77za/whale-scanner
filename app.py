@@ -2,7 +2,11 @@
 🚀 اسکنر حرفه‌ای حجم، دلتا و معاملات نهنگ - نسخه کامل برای Streamlit Cloud
 """
 
-import ccxt
+try:
+    import ccxt
+except ImportError as e:
+    st.error(f"خطا در بارگیری ccxt: {e}")
+    st.stop()
 import pandas as pd
 import numpy as np
 import warnings
@@ -154,4 +158,5 @@ class WhaleTracker:
             except Exception as e:
                 print(f"⚠️ خطا در اتصال به {config['name']}: {str(e)[:50]}")
         return exchanges
+
     
